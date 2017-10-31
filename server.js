@@ -22,6 +22,6 @@ app.use(function(req, res) {
 
 //app.listen(port, );
 
-http.createServer(app).listen(8080);
+http.createServer(app).listen(80);
 
 console.log('todo list RESTful API server started on: ' + port);
