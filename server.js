@@ -3,7 +3,8 @@ app = express(),
 port = process.env.PORT || 3000,
 mongoose = require('mongoose'),
 Notebook = require('./api/models/notebookModels'), //created model loading here
-bodyParser = require('body-parser');
+bodyParser = require('body-parser'),
+http = require('http');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -19,6 +20,8 @@ app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
   });
 
-app.listen(port);
+//app.listen(port, );
+
+http.createServer(app).listen(80);
 
 console.log('todo list RESTful API server started on: ' + port);
