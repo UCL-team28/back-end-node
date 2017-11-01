@@ -1,6 +1,4 @@
-console.log('Yes baby');
-
-/*var express = require('express');
+var express = require('express');
 var path = require('path');
 
 var routes = require('./api/routes/index');
@@ -26,4 +24,3 @@ app.use(function(err, req, res, next) {
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
-*/
