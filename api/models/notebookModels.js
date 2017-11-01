@@ -13,7 +13,7 @@ var userSchema = new Schema({
 });
 
 //embedded
-var logEntrySchema = new Schema(
+var noteSchema = new Schema(
   {
     title: String,
     content: String,
@@ -24,14 +24,18 @@ var logEntrySchema = new Schema(
     updated_at: {
       type: Date,
       default: Date.now
-    },
-    created_by: userSchema,
-    updated_by: userSchema
+    }/*,
+      created_by: userSchema,
+    updated_by: userSchema*/
   });
 
 //actual
 var notebookSchema = new Schema(
   {
+    title: {
+      type: String,
+      required: 'Kindly enter the name of the notebook'
+    },
     created_at: {
       type: Date,
       default: Date.now
@@ -40,21 +44,18 @@ var notebookSchema = new Schema(
       type: Date,
       default: Date.now
     },
-    created_by: userSchema,
+    /*created_by: userSchema,
     updated_by: userSchema,
-    title: {
-      type: String,
-      required: 'Kindly enter the name of the notebook'
-    },
     user_group: {
       type: [userSchema],
       required: 'Kindly specify the users of the notebook'
-    },
-    logs: {
-      type: [logEntrySchema],
+    },*/
+    notes: {
+      type: [noteSchema],
       default: []
     }
   });
 
 module.exports = mongoose.model('Notebook', notebookSchema);
+module.exports = mongoose.model('Note', noteSchema);
 module.exports = mongoose.model('User', userSchema);

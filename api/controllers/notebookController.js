@@ -11,7 +11,7 @@ exports.list_all_notebooks = function (req, res) {
     });
 };
 
-exports.create_a_notebook= function (req, res) {
+exports.create_a_notebook = function (req, res) {
     var new_notebook = new Notebook(req.body);
     new_notebook.save(function (err, notebook) {
         if (err)
@@ -28,7 +28,7 @@ exports.read_a_notebook = function (req, res) {
     });
 };
 
-exports.update_a_notebook= function (req, res) {
+exports.update_a_notebook = function (req, res) {
     Notebook.findOneAndUpdate({ _id: req.params.notebookId }, req.body, { new: true }, function (err, notebook) {
         if (err)
             res.send(err);
@@ -45,4 +45,3 @@ exports.delete_a_notebook = function (req, res) {
         res.json({ message: 'Notebook successfully deleted' });
     });
 };
-
