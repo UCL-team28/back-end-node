@@ -6,9 +6,11 @@ Notebook = require('./api/models/notebookModels'), //created model loading here
 bodyParser = require('body-parser'),
 http = require('http');
 
+const CONNECTION_STRING = 'mongodb://zczlozh:ixZlQLngM4GnO4b4hVSV6c29yjuNP1PEyrnmiCNgxWtaZfdoYUAzv0gcuT5WW2enJO8C6Yq5RCPWce0pOuHT5g==@zczlozh.documents.azure.com:10255/?ssl=true'
+
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/notebook'); 
+mongoose.connect(CONNECTION_STRING, {useMongoClient: true}); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,6 +24,6 @@ app.use(function(req, res) {
 
 //app.listen(port, );
 
-http.createServer(app).listen(8080);
+app.listen(port);
 
 console.log('todo list RESTful API server started on: ' + port);
