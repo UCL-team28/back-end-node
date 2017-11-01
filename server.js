@@ -1,37 +1,26 @@
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  mongoose = require('mongoose'),
-  Notebook = require('./api/models/notebookModels'), //created model loading here
-  bodyParser = require('body-parser'),
-  http = require('http');
+var express = require('express');
+var path = require('path');
 
-const CONNECTION_STRING = 'mongodb://zczlozh:ixZlQLngM4GnO4b4hVSV6c29yjuNP1PEyrnmiCNgxWtaZfdoYUAzv0gcuT5WW2enJO8C6Yq5RCPWce0pOuHT5g==@zczlozh.documents.azure.com:10255/?ssl=true'
+var routes = require('./api/routes/index');
 
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
+var app = express();
 
-mongoose.connect(CONNECTION_STRING, {useMongoClient: true}); 
+app.use('/', routes);
 
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
+// error handler
+// no stacktraces leaked to user unless in development environment
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.json(err.message);
+});
 
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-var routes = require('./api/routes/notebookRoutes'); //importing route
-routes(app); //register the route
-
-//app.use(function (req, res) {
-//  res.status(404).send({ url: req.originalUrl + ' not found' })
-//});
-
-//app.listen(port, );
-
-
-app.listen(port);
-
-
-
-
-console.log('todo list RESTful API server started on: ' + port);
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+})
