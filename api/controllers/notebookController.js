@@ -1,8 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Notebook = mongoose.model('Notebook'),
-    Note = mongoose.model('Note');
+    Notebook = mongoose.model('Notebook');
 
 exports.list_all_notebooks = function (req, res) {
     Notebook.find({}, function (err, notebook) {
@@ -44,23 +43,5 @@ exports.delete_a_notebook = function (req, res) {
         if (err)
             res.send(err);
         res.json({ message: 'Notebook successfully deleted' });
-    });
-};
-
-
-exports.list_all_notes = function (req, res) {
-    Notebook.findById(req.params.notebookId, function (err, notebook) {
-        if (err)
-            res.send(err);
-        res.json(notebook.notes);
-    });
-};
-
-exports.read_a_note = function (req, res) {
-    Notebook.findById(req.params.notebookId, function (err, notebook) {
-        if (err)
-            res.send(err);
-        let note = notebook.notes.id(req.params.noteId)
-        res.json(note);
     });
 };
