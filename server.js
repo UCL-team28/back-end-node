@@ -11,6 +11,9 @@ var notebook = require('./api/routes/notebook');
 var app = express();
 
 app.use(cors());
+app.use(parser.urlencoded({
+  extended: true
+}));
 app.use(parser.json());
 
 app.use('/', user);
