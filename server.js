@@ -7,6 +7,8 @@ var cors = require('cors');
 
 var user = require('./api/routes/user');
 var notebook = require('./api/routes/notebook');
+var categories = require('./api/routes/categories');
+
 
 var app = express();
 
@@ -18,6 +20,7 @@ app.use(parser.json());
 
 app.use('/', user);
 app.use('/notebook', notebook);
+app.use('/categories', categories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
