@@ -3,12 +3,14 @@ require('dotenv').config()
 var express = require('express');
 var path = require('path');
 var parser = require('body-parser');
+var cors = require('cors');
 
 var user = require('./api/routes/user');
 var notebook = require('./api/routes/notebook');
 
 var app = express();
 
+app.use(cors());
 app.use(parser.json());
 
 app.use('/', user);
