@@ -19,6 +19,7 @@
     "sequelize": "^4.20.3"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
     "nodemon": "^1.12.1"
   }
 }
