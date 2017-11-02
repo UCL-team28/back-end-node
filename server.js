@@ -30,6 +30,6 @@ app.use(function(err, req, res, next) {
   res.json(err.message);
 });
 
-app.listen(80, function () {
+app.listen(1337, function () {
   console.log('Started app on :80')
 })
