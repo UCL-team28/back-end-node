@@ -22,9 +22,6 @@ router.get('/:id', function(req, res) {
                     exclude: ['id']
                 }
             },
-            order: [
-                ['id', 'DESC']
-            ],
             attributes: [
                 'id', 'name', 'content', 'media', 'media_type', [models.sequelize.fn('date_format', models.sequelize.col('created'), '%Y-%m-%d'), 'created']
             ],
@@ -32,6 +29,9 @@ router.get('/:id', function(req, res) {
         attributes: {
             exclude: ['user_id']
         },
+        order: [
+		    [models.note, 'id', 'DESC']
+		  ]
     }).then(function(notebook) {
         res.json(notebook);
     });
