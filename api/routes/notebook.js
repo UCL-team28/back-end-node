@@ -7,7 +7,7 @@ var ok = {
     ok: true
 };
 
-var nope = { 
+var nope = {
     ok: false
 };
 
@@ -23,13 +23,15 @@ router.get('/:id', function(req, res) {
                 }
             },
             attributes: [
-            	'id', 'name', 'content', 'media', 'media_type',
-                [models.sequelize.fn('date_format', models.sequelize.col('created'), '%Y-%m-%d'), 'created']
-            ]
+                'id', 'name', 'content', 'media', 'media_type', [models.sequelize.fn('date_format', models.sequelize.col('created'), '%Y-%m-%d'), 'created']
+            ],
+            order: [
+                ['created', 'DESC']
+            ],
         },
         attributes: {
             exclude: ['user_id']
-        }
+        },
     }).then(function(notebook) {
         res.json(notebook);
     });
