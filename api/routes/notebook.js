@@ -23,7 +23,7 @@ router.get('/:id', function(req, res) {
                 }
             },
             order: [
-                ['created', 'ASC']
+                ['id', 'DESC']
             ],
             attributes: [
                 'id', 'name', 'content', 'media', 'media_type', [models.sequelize.fn('date_format', models.sequelize.col('created'), '%Y-%m-%d'), 'created']
