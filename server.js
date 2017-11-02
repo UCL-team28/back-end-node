@@ -1,11 +1,18 @@
+require('dotenv').config()
+
 var express = require('express');
 var path = require('path');
+var parser = require('body-parser');
 
-var routes = require('./api/routes/index');
+var user = require('./api/routes/user');
+var notebook = require('./api/routes/notebook');
 
 var app = express();
 
-app.use('/', routes);
+app.use(parser.json());
+
+app.use('/', user);
+app.use('/notebook', notebook);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

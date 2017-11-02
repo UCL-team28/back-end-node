@@ -4,8 +4,8 @@ var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 
-const sequelize = new Sequelize('team28', 'team28@mysql-backend', 'Supersecret1!', {
-    host: 'mysql-backend.mysql.database.azure.com',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+    host: process.env.DB_HOST,
     dialect: 'mysql',
 
     pool: {

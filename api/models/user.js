@@ -11,10 +11,18 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         timestamps: false,
         freezeTableName: true,
+        instanceMethods: {
+            toJSON: function() {
+                var values = Object.assign({}, this.get());
+
+                delete values.password;
+                return values;
+            }
+        }
     });
 
     user.associate = function(models) {
-        user.hasMany(models.notebook, {foreignKey: 'user_id'});
+        user.hasMany(models.notebook, { foreignKey: 'user_id' });
     }
 
     return user;
