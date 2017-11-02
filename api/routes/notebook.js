@@ -22,11 +22,11 @@ router.get('/:id', function(req, res) {
                     exclude: ['id']
                 }
             },
+            order: [
+                ['created', 'ASC']
+            ],
             attributes: [
                 'id', 'name', 'content', 'media', 'media_type', [models.sequelize.fn('date_format', models.sequelize.col('created'), '%Y-%m-%d'), 'created']
-            ],
-            order: [
-                ['created', 'DESC']
             ],
         },
         attributes: {
