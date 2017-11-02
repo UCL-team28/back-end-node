@@ -45,6 +45,7 @@ router.delete('/:id', function(req, res) {
 
 router.post('/:nid/note', function(req, res) {
     const newNote = req.body;
+    console.log(req);
 
     const note = models.note.build({
         created: new Date(),
