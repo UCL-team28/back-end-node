@@ -5,16 +5,16 @@ var express = require('express');
 //var parser = require('body-parser');
 //var cors = require('cors');
 
-var user = require('./api/routes/user');
-var notebook = require('./api/routes/notebook');
+//var user = require('./api/routes/user');
+//var notebook = require('./api/routes/notebook');
 
 var app = express();
 
 //app.use(cors());
 //app.use(parser.json());
 
-app.use('/', user);
-app.use('/notebook', notebook);
+//app.use('/', user);
+//app.use('/notebook', notebook);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
